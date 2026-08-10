@@ -10,23 +10,30 @@ class GamesController < ApplicationController
   end
 
   def score
-    def inside_grid?(attempt, grid)
-      attempt_array = attempt.upcase.chars
-      attempt_array.all? { |letter| grid.index(letter).nil? ? false : grid.delete_at(grid.index(letter)) }
-    end
-
-    # end_time = Time.now.to_i
-    # start_time = params[:startTime].to_i
     time = Time.now.to_i - params[:startTime].to_i
     word = params[:word]
     letters = params[:letters].chars
+
+    @result = generate_result(word, letters, time)
+  end
+
+  private
+
+  def generate_result (word, letters, time)
     url = "https://dictionary.lewagon.com/#{word}"
     result_data = URI.parse(url).read
     result_hash = JSON.parse(result_data)
-    @result = { word: word, score: ((word.length * 10) / time), message: "Well Done", time: time }
 
-    @result =  { word: word, score: 0, message: "Not in the grid", time: time } unless inside_grid?(word, letters)
+    return { word: word, score: 0, message: "Not in the grid", time: time } unless inside_grid?(word, letters)
 
-    @result =  { word: word, score: 0, message: "Not an English word", time: time } unless result_hash["found"]
+    return { word: word, score: 0, message: "Not an English word", time: time } unless result_hash["found"]
+
+    { word: word, score: ((word.length * 10) / time), message: "Well Done", time: time }
   end
+
+   def inside_grid?(word, letters)
+      word_array = word.upcase.chars
+      word_array.all? { |letter| letters.index(letter).nil? ? false : letters.delete_at(letters.index(letter)) }
+    end
+
 end
