@@ -1,0 +1,14 @@
+<div class="container mt-5 py-2 rounded" style="width: 40%">
+  <h1>Results</h1>
+  <div class="col-8 mt-5">
+    <% if @result[:score] == 0 %>
+      <h4>Sorry but <strong><%= @result[:word].capitalize %></strong> is <%= @result[:message] %></h4>
+    <% else %>
+      <p>Your word: <%= @result[:word] %></p>
+      <p>Time Taken to answer: <%= @result[:time] %></p>
+      <p>Your score: <%= @result[:score] %></p>
+      <h4><%= @result[:message] %></h4>
+    <% end %>
+    <%= link_to "New Game", new_path %>
+  </div>
+</div>

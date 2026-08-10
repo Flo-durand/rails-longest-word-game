@@ -1,0 +1,19 @@
+<div class="container py-2 mt-5 rounded" style="width: 60%">
+  <h1>New game</h1>
+  <ul>
+  <% @letters.each do |letter| %>
+    <li class="letter"><%= letter %></li>
+  <% end %>
+  </ul>
+
+  <form action="/score" method="POST" data-turbo="false" class="m-auto col-6">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <label for="word" class="form-label fs-3">Your word:</label>
+    <div class="mb-3 col-6 input-group">
+      <input type="text" id="word" name="word" class="form-control">
+      <input id="letters" name="letters" type="hidden" value="<%= @letters.join %>"/>
+      <input id="startTime" name="startTime" type="hidden" value="<%= Time.now.to_i %>"/>
+      <input type="submit" value="Submit word!" class="btn btn-primary">
+    </div>
+  </form>
+</div>

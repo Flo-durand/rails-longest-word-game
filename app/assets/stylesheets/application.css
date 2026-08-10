@@ -8,3 +8,46 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+.container {
+  background-color: #FFF7EB;
+  box-shadow: 0 0 5px rgb(13, 71, 161, 0.8);
+  width: fit-content;
+}
+h1, h2, h4 {
+  text-align: center;
+}
+ul{
+  text-align: center;
+  margin: 3em auto;
+}
+li{
+  display: inline;
+  list-style: none;
+  background-color: #0D47A1;
+  color: white;
+  padding: 0.8em 1em;
+  margin: 0.2em;
+  font-size: 1.5em;
+  box-shadow: 0 0 5px rgb(13, 71, 161, 0.8);
+  border-radius: 3px;
+}
+p {
+  width: fit-content;
+  margin: 1em auto;
+}
+div {
+  margin: 0 auto;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: gray;
+  width: fit-content;
+  margin: 2em auto;
+}
+
+a:hover{
+  color: #0D47A1;
+}
